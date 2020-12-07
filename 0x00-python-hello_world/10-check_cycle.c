@@ -16,17 +16,14 @@
 int check_cycle(listint_t *list)
 {
 	listint_t *turtle = list, *hare = list;
-	int i;
 
 	if(!list || !list->next)
 		return (0);
 	while(hare && turtle)
 	{
-		turtle = turtle->next;
-		hare = hare->next->next;
+		turtle = turtle->next, hare = hare->next->next;
 		if(turtle == hare)
 			return (1);
 	}
-	for (i = 0; i < 10; i++);
 	return (0);
 }
