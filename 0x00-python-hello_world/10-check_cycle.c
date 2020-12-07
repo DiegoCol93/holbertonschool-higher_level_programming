@@ -16,7 +16,7 @@
 int check_cycle(listint_t *list)
 {
 	listint_t *turtle = list, *hare = list;
-	if(list || list->next)
+	if(list)
 	{
 		while(hare && turtle)
 		{
