@@ -21,8 +21,9 @@ int check_cycle(listint_t *list)
 		return (0);
 	while(hare && turtle)
 	{
-		turtle = turtle->next, hare = hare->next->next;
-		if(turtle == hare)
+		turtle = turtle->next;
+		hare = hare->next->next;
+		if(turtle == hare || hare->next == turtle)
 			return (1);
 	}
 	return (0);
