@@ -19,11 +19,11 @@ int check_cycle(listint_t *list)
 
 	if(!list || !list->next)
 		return (0);
-	while(hare && turtle)
+	while(hare && turtle && hare->next)
 	{
 		turtle = turtle->next;
 		hare = hare->next->next;
-		if(turtle == hare || hare->next == turtle)
+		if(hare == turtle)
 			return (1);
 	}
 	return (0);
