@@ -16,12 +16,12 @@
 int check_cycle(listint_t *list)
 {
 	listint_t *turtle = list, *hare = list;
-	if(list)
+	if(list || list->next)
 	{
 		while(hare && turtle)
 		{
 			turtle = turtle->next;
-			hare = hare->next->next;
+			hare = hare->next->next->next->next;
 			if(turtle == hare)
 				return (1);
 		}
