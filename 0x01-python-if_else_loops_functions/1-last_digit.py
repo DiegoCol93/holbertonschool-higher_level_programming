@@ -4,12 +4,12 @@ number = random.randint(-10000, 10000)
 
 # If number negative, get negative last digit.
 if number < 0:
-    digit = ((number % 10) * -1)
+    digit = (((number * -1) % 10) * -1)
 else:
     digit = number % 10
 
 # Begin Printing.
-print("Last digit of {} is {} and is".format(number, digit), end=' ')
+print("Last digit of {:d} is {:d} and is ".format(number, digit), end='')
 
 # Conditional printing.
 if digit > 5:
