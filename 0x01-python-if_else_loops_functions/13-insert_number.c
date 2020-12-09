@@ -27,17 +27,17 @@ listint_t *insert_node(listint_t **head, int number)
 	{
 		prev = *head; /* Set prev to start of list. */
 		if (!prev)
-		{
-			new->next = prev;
-			*head = new;
-			return (new);
+		{    /* If no node exists */
+			new->next = prev; /* Set new->next to previous head. */
+			*head = new; /* Set head to point to new node. */
+			return (new); /* Return new node. */
 		}
 		next = prev->next; /* Set next to the next node. */
 		if (prev->n > number)
 		{ /* If first number greater than new one*/
 			new->next = prev; /* Set new->next to previous head. */
 			*head = new; /* Set head to point to new node. */
-			return (new);
+			return (new); /* Return new node. */
 		}
 		while (next && next->n < number)
 		{    /* Move through list. */
