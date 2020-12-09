@@ -24,18 +24,18 @@ listint_t *insert_node(listint_t **head, int number)
 	new->n = number; /* Set number for new node */
 	new->next = NULL;
 
-	if (*head && head)
+	if (head)
 	{
 		prev = *head; /* Set prev to start of list. */
 		next = prev->next; /* Set next to the next node. */
 		if (prev->n > number)
-		{
-			new->next = prev;
-			*head = new;
+		{ /* If first number greater than new one*/
+			new->next = prev; /* Set new->next to previous head. */
+			*head = new; /* Set head to point to new node. */
 			return (new);
 		}
 		while (next && next->n < number)
-		{                         /* Move through list.*/
+		{    /* Move through list. */
 			prev = prev->next;
 			next = next->next;
 		}
