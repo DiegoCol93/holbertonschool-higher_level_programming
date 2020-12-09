@@ -26,6 +26,12 @@ listint_t *insert_node(listint_t **head, int number)
 	if (head)
 	{
 		prev = *head; /* Set prev to start of list. */
+		if (!prev)
+		{
+			new->next = prev;
+			*head = new;
+			return (new);
+		}
 		next = prev->next; /* Set next to the next node. */
 		if (prev->n > number)
 		{ /* If first number greater than new one*/
