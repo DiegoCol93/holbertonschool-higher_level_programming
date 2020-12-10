@@ -18,4 +18,4 @@ if __name__ == "__main__":
         result = 0
         for argument in argv[1:]:
             result = result + int(argument)
-            print(result)
+        print(result)
