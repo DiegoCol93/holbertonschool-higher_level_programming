@@ -11,13 +11,13 @@ if __name__ == "__main__":
                                               add(int(argv[1]), int(argv[3]))))
         elif argv[2] == '-':
             print("{:s} - {:s} = {:d}".format(argv[1], argv[3],
-                                              add(int(argv[1]), int(argv[3]))))
+                                              sub(int(argv[1]), int(argv[3]))))
         elif argv[2] == '*':
             print("{:s} * {:s} = {:d}".format(argv[1], argv[3],
-                                              add(int(argv[1]), int(argv[3]))))
+                                              mul(int(argv[1]), int(argv[3]))))
         elif argv[2] == '/':
             print("{:s} / {:s} = {:d}".format(argv[1], argv[3],
-                                              add(int(argv[1]), int(argv[3]))))
+                                              div(int(argv[1]), int(argv[3]))))
         else:
             print("Unknown operator. Available operators: +, -, * and /")
             exit(1)
