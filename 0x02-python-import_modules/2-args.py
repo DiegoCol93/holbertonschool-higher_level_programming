@@ -12,7 +12,7 @@ if __name__ == "__main__":
         print("{:d} arguments:".format(n_args - 1))
         counter = 1
         while counter < n_args:
-            print("{:d}: {:s}".format(i, sys.argv[i]))
+            print("{:d}: {:s}".format(counter, sys.argv[counter]))
             counter += 1
     else:
         print("0 arguments.")
