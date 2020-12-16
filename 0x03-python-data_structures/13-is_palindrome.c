@@ -32,8 +32,8 @@ int is_palindrome(listint_t **head)
 	{
 		ptr2 = ptr1;
 		cmp = len;
-		for (; cmp > 0; cmp--)
-			ptr2 = ptr2->next;
+		/*	for (; cmp > 0; cmp--)
+			ptr2 = ptr2->next;*/
 		if (ptr1->n != ptr2->n)
 			break;
 		ptr1 = ptr1->next;
