@@ -10,11 +10,20 @@ int is_palindrome(listint_t **head)
 		return (1);
 	ptr1 = *head;
 	ptr2 = *head;
-	while (ptr2->next)
+	while (ptr2)
 	{
-		len++;
-		ptr2 = ptr2->next;
+		if (ptr2->next)
+		{
+			ptr2 = ptr2->next->next;
+			len += 2;
+		}
+		else
+		{
+			ptr2 = ptr2->next;
+			len++;
+		}
 	}
+	len--;
 	if (len % 2 == 0)
 		half = (len / 2);
 	else
