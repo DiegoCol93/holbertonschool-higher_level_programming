@@ -32,9 +32,9 @@ int is_palindrome(listint_t **head)
 		}
 		if (half == 0 && cmp == 0)
 			return (1);
-
+		return (0);
 	}
-	return (0);
+	return (1);
 }
 unsigned int get_lenght(listint_t **head)
 {
