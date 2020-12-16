@@ -1,9 +1,5 @@
 #include "lists.h"
 #include <stdio.h>
-unsigned int get_lenght(listint_t **head);
-/**
- *
- */
 int is_palindrome(listint_t **head)
 {
 	unsigned int len = 0, half = 0, cmp = 0;
@@ -14,7 +10,11 @@ int is_palindrome(listint_t **head)
 		return (1);
 	ptr1 = *head;
 	ptr2 = *head;
-	len = get_lenght(head) - 1;
+	while (ptr2->next)
+	{
+		len++;
+		ptr2 = ptr2->next;
+	}
 	if (len % 2 == 0)
 		half = (len / 2);
 	else
@@ -34,17 +34,3 @@ int is_palindrome(listint_t **head)
 		return (1);
 	return (0);
 }
-unsigned int get_lenght(listint_t **head)
-{
-	listint_t *len = NULL;
-	unsigned int nodes = 0;
-
-	len = *head;
-	while (len)
-	{
-		nodes++;
-		len = len->next;
-	}
-	return (nodes);
-}
-
