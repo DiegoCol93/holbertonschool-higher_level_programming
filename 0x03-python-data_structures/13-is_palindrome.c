@@ -21,14 +21,14 @@ int is_palindrome(listint_t **head)
 		half = (len / 2) + 1;
 	for (; half > 0; half--)
 	{
-		ptr2 = *head;
+		ptr2 = ptr1;
 		cmp = len;
 		for (; cmp > 0; cmp--)
 			ptr2 = ptr2->next;
 		if (ptr1->n != ptr2->n)
 			break;
 		ptr1 = ptr1->next;
-		len --;
+		len -= 2;
 	}
 	if (half == 0 && cmp == 0)
 		return (1);
