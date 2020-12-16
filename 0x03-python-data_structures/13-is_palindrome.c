@@ -1,46 +1,43 @@
 #include "lists.h"
-/**
- * pal - compares list to find matching numbers
- * @head: pointer that checks from top to bottom
- * @tail: pointer that checks from bottom to top
- * Return: Pointer to next position in list, or NULL if no match
- */
+#include <stdio.h>
+#include <stdlib.h>
 
-listint_t *pal(listint_t *head, listint_t *tail)
-{
-	if (!tail->next)
-		return (head->next);
-	tail = tail->next;
-	if (!tail->next)
-	{
-		if (head->n != head->next->n)
-			return (NULL);
-		if (!head->next->next)
-			return (head);
-		return (head->next->next);
-	}
-	tail = pal(head->next, tail->next);
-	if (!tail)
-		return (NULL);
-	if (tail->n == head->n)
-	{
-		if (!tail->next)
-			return (head);
-		return (tail->next);
-	}
-	return (NULL);
-}
-/**
- * is_palindrome - compares list to find matching items
- * @head: double pointer to list
- * Return: 0 if it is not a palindrome, 1 if it is a palindrome
- */
+int get_lenght_recursive(listint_t *copy, int n);
 int is_palindrome(listint_t **head)
 {
-	if (!head || !*head || !(*head)->next)
-		return (1);
+	listint_t *ptr1 = NULL, *ptr2 = NULL;
+	unsigned int len = 0, half = 0, cmp = 0;
 
-	if (pal(*head, *head))
+	if (!head || !*head)
+		return (1);
+	ptr1 = *head;
+	ptr2 = *head;
+	len = get_lenght_recursive(ptr2, 0);
+	if (len % 2 == 0)
+		half = (len / 2);
+	else
+		half = (len / 2) + 1;
+	for (; half > 0; half--)
+	{
+		ptr2 = ptr1;
+		cmp = len;
+		for (; cmp > 0; cmp--)
+			ptr2 = ptr2->next;
+		if (ptr1->n != ptr2->n)
+			break;
+		ptr1 = ptr1->next;
+		len -= 2;
+	}
+	if (half == 0 && cmp == 0)
 		return (1);
 	return (0);
+}
+int get_lenght_recursive(listint_t *copy, int n)
+{
+        if(!copy->next)
+		return (n);
+	else
+		return (n);
+        copy = copy->next;
+        get_lenght_recursive(copy, n);
 }
