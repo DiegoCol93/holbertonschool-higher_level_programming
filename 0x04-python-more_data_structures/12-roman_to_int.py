@@ -7,7 +7,7 @@ def roman_to_int(roman_string):
     if isinstance(roman_string, str) and roman_string is not None:
         while i < len(roman_string):
             if (i < (len(roman_string) - 1) and
-                let_dic[roman_string[i + 1]] > let_dic[roman_string[i]]):
+                    let_dic[roman_string[i + 1]] > let_dic[roman_string[i]]):
                 res -= let_dic[roman_string[i]]
             else:
                 res += let_dic[roman_string[i]]
