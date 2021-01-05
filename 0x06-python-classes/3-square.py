@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+""" Module: For defining the Square class. """
+
+
+class Square:
+    """ Class: For defining a Square object. """
+    def __init__(self, size=0):
+        """'__init__: with validation of size as int and positive.
+
+        Args:
+            size (int): Size of the square.
+        """
+        if isinstance(size, (int)) is True:
+            if size < 0:
+                raise ValueError("size must be >= 0")
+            else:
+                self.__size = size  #: init attribute.
+        else:
+            raise TypeError("size must be an integer")
+
+    def area(self):
+        """ area: Returns the area of the Square instance. """
+        return (self.__size * self.__size)
