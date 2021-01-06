@@ -55,7 +55,7 @@ class Square:
         """ position: Gets the value of position. """
         return self.__position
 
-    @size.setter
+    @position.setter
     def position(self, value):
         """ position: Sets the position for printing.
 
