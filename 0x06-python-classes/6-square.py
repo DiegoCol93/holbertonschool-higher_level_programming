@@ -20,10 +20,10 @@ class Square:
 
     def my_print(self):
         """ my_print: Prints Square instance using '#'. """
-        if self.__position[1] > 0:
-            lines = "\n" * self.__position[1]
-            print(lines, end='')
         if self.__size > 0:
+            if self.__position[1] > 0:
+                lines = "\n" * self.__position[1]
+                print(lines, end='')
             for lines in range(0, self.__size):
                 for columns in range(0, self.__size + self.__position[0]):
                     if columns >= self.__position[0]:
