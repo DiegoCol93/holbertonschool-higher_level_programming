@@ -5,28 +5,14 @@
 class Square:
     """ Class: For defining a Square object. """
     def __init__(self, size=0, position=(0, 0)):
-        """__init__: with validation of size as int and positive.
+        """__init__:
 
         Args:
             size (int): Size of the square.
             position (tuple): Position for printing.
         """
-        if (type(position) is not tuple or
-                len(position) != 2 or
-                type(position[0]) is not int or
-                type(position[1]) is not int or
-                position[0] < 0 or
-                position[1] < 0):
-            raise TypeError("position must be a tuple of 2 positive integers")
-        else:
-            self.__position = position
-        if isinstance(size, (int)) is True:
-            if size < 0:
-                raise ValueError("size must be >= 0")
-            else:
-                self.__size = size  #: init attribute.
-        else:
-            raise TypeError("size must be an integer")
+        self.position = position
+        self.size = size
 
     def area(self):
         """ area: Returns the area of the Square instance. """
