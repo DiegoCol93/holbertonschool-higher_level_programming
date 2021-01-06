@@ -11,8 +11,8 @@ class Square:
             size (int): Size of the square.
             position (tuple): Position for printing.
         """
-        self.position = position
         self.size = size
+        self.position = position
 
     def area(self):
         """ area: Returns the area of the Square instance. """
