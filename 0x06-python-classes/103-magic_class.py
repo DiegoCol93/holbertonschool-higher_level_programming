@@ -44,4 +44,4 @@ class MagicClass:
             Circumference of the circle.
 
         """
-        return ((2 * math.pi) * self.__radius)
+        return 2 * math.pi * self.__radius
