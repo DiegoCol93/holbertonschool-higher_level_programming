@@ -4,17 +4,18 @@ import math
 
 
 class MagicClass:
-    """ Class: MagicClass Bytecode reconstruction.
-    """
+    """ Class: MagicClass Bytecode reconstruction."""
+
     def __init__(self, radius):
         """"Method for initialize a circle object
-           with validation of the data type of radius variable.
+            with validation of the data type of radius variable.
 
         Args:
             radius(int): Radius of the circle.
 
         Return:
             Always nothing.
+
         """
         self.__radius = 0
         if type(radius) is not int and type(radius) is not float:
@@ -28,6 +29,7 @@ class MagicClass:
 
         Return:
             Area of the circle.
+
         """
         return ((self.__radius ** 2) * math.pi)
     def circumference(self):
@@ -38,5 +40,6 @@ class MagicClass:
 
         Return:
             Circumference of the circle.
+
         """
         return ((2 * math.pi) * self.__radius)
