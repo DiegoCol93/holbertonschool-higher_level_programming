@@ -22,7 +22,7 @@ class MagicClass:
             raise TypeError('radius must be a number')
         self.__radius = radius
 
-    def area(self, radius):
+    def area(self):
         """Method to calculate the area of the circle.
 
         Args:
@@ -32,7 +32,7 @@ class MagicClass:
             Area of the circle.
 
         """
-        return ((self.__radius ** 2) * math.pi)
+        return self.__radius ** 2 * math.pi
 
     def circumference(self):
         """"Method to calculate the circumference of the circle.
