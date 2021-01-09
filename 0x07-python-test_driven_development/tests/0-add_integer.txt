@@ -1,0 +1,221 @@
+The ``0-add_integer`` module
+============================
+
+Using ``add_integer``
+---------------------:
+
+     ####################################################################
+     # 									#
+     #  Import os for testing contents of the file e.g.,		#
+     #  >>>os.popen('cat -e 0-add_integer.py | tail -1').read()[-1]	#
+     #  '\n'								#
+     # 									#
+     ####################################################################
+    >>> import os
+
+    ### Import add_integer from 0-add_integer module.
+    >>> add_integer = __import__('0-add_integer').add_integer
+
+
+    #--------------------------- Requirement tests ---------------------------#
+
+    ### Module documentation.
+    >>> len('0-add_integer'.__doc__) > 10
+    True
+
+    ### Function documentation.
+    >>> len(add_integer.__doc__) > 10
+    True
+
+    ### New line at the end of the file.
+    >>> os.popen('cat -e 0-add_integer.py | tail -1').read()[-1]
+    '\n'
+
+    ### File contains the proper shebang.
+    >>> os.popen('cat 0-add_integer.py | head -1').read()
+    '#!/usr/bin/python3\n'
+
+    ### No error from pep8
+    >>> os.popen("pep8 0-add_integer.py").read()
+    ''
+
+    ### Executable file permissions.
+    >>> import os
+    >>> os.access('0-add_integer.py', os.X_OK)
+    True
+
+    ### README exists on current directory.
+    >>> cwd = os.getcwd()
+    >>> path = cwd + '/README.md'
+    >>> os.path.exists(path)
+    True
+
+
+    #-------------------------- Tests from 0-main.py --------------------------#
+
+    ### Both ints.
+    >>> add_integer(1, 2)
+    3
+
+    ### One negative
+    >>> add_integer(100, -2)
+    98
+
+    ### Only one int.
+    >>> add_integer(2)
+    100
+
+    ### One float.
+    >>> add_integer(100.3, -2)
+    98
+
+    ### Str in (b) argument.
+    >>> add_integer(4, "School")
+    Traceback (most recent call last):
+    ...
+    TypeError: b must be an integer
+
+    ### None
+    >>> add_integer(None)
+    Traceback (most recent call last):
+    ...
+    TypeError: a must be an integer
+
+
+    #----------------------------| Correct cases |----------------------------#
+
+    #----------------------------- int cases -----------------------------#
+
+    ### int + int
+    >>> add_integer(3, 3)
+    6
+
+    ### -int + int
+    >>> add_integer(-3, 3)
+    0
+
+    ### int + -int
+    >>> add_integer(3, -3)
+    0
+
+    ### -int + -int
+    >>> add_integer(-3, -3)
+    -6
+
+
+    #---------------------------- float cases ----------------------------#
+
+    ### float + float
+    >>> add_integer(3.9, 3.5)
+    6
+
+    ### float + -float
+    >>> add_integer(3.2, -3.2)
+    0
+
+    ### -float + float
+    >>> add_integer(-3.9, 3.2)
+    0
+
+    ### -float + -float
+    >>> add_integer(-3.9, -3.2)
+    -6
+
+
+    #------------------ Mixed Correct cases, int, float ------------------#
+
+    ### int + float
+    >>> add_integer(3, 3.5)
+    6
+
+    ### float + int
+    >>> add_integer(3.2, 3)
+    6
+
+    ### int + -float
+    >>> add_integer(3, -3.2)
+    0
+
+    ### -float + int
+    >>> add_integer(-3.9, 3)
+    0
+
+    ### float + -int
+    >>> add_integer(3.2, -3)
+    0
+
+    ### -int + float
+    >>> add_integer(-3, 3.2)
+    0
+
+    ### -int + -float
+    >>> add_integer(-3, -3.5)
+    -6
+
+
+    #--------------------------| Incorrect cases |--------------------------#
+
+    #------------------------- Not Correct Types -------------------------#
+
+    ### Complex type
+    >>> add_integer(3j)
+    Traceback (most recent call last):
+    ...
+    TypeError: a must be an integer
+
+    ### Boolean type
+    >>> add_integer(True, 1)
+    Traceback (most recent call last):
+    ...
+    TypeError: a must be an integer
+
+    ### inf a
+    >>> add_integer(10e+1000, 1)
+    Traceback (most recent call last):
+    ...
+    OverflowError: cannot convert float infinity to integer
+
+    ### inf b
+    >>> add_integer(1, 10e+1000)
+    Traceback (most recent call last):
+    ...
+    OverflowError: cannot convert float infinity to integer
+
+    ### Nan Case
+    >>> add_integer(1, (10e+1000 / 10e+1000))
+    Traceback (most recent call last):
+    ...
+    ValueError: cannot convert float NaN to integer
+
+    ### Only str
+    >>> add_integer("C was fun")
+    Traceback (most recent call last):
+    ...
+    TypeError: a must be an integer
+
+    ### Str in a
+    >>> add_integer("C was fun", 1)
+    Traceback (most recent call last):
+    ...
+    TypeError: a must be an integer
+
+    ### Str in b
+    >>> add_integer(1, "C was fun")
+    Traceback (most recent call last):
+    ...
+    TypeError: b must be an integer
+
+
+    #--------------------------- Argument Cases ---------------------------#
+
+    ### Three arguments
+    >>> add_integer(0, 1, 2)
+    Traceback (most recent call last):
+    ...
+    TypeError: add_integer() takes from 1 to 2 positional arguments but 3 were given
+
+    ### No args given.
+    >>> add_integer()
+    Traceback (most recent call last):
+    ...
+    TypeError: add_integer() missing 1 required positional argument: 'a'
