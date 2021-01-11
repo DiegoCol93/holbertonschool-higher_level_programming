@@ -119,5 +119,5 @@ class Rectangle:
     # __repr__ method. # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def __repr__(self):
         """ Representation of the object in a string format """
-        r_repr = "Rectangle(" + str(self.width) + "," + str(self.height) + ")"
+        r_repr = "Rectangle(" + str(self.width) + ", " + str(self.height) + ")"
         return r_repr
