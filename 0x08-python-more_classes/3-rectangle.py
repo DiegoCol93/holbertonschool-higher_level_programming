@@ -102,16 +102,20 @@ class Rectangle:
         """ Printing method via __str__. """
 
         rect_string = ''
-        colums = 0
-        while colums < self.height:
+        if self.height > 0 and self.width > 0:
 
-            rows = 0
-            while rows < self.width:
+            colums = 0
+            while colums < self.height:
 
-                rect_string += '#'
-                rows += 1
+                rows = 0
+                while rows < self.width:
 
-            rect_string += '\n'
-            colums += 1
+                    rect_string += '#'
+                    rows += 1
 
-        return(rect_string[0: -1])
+                rect_string += '\n'
+                colums += 1
+
+            return(rect_string[0: -1])
+        else:
+            return(rect_string)
