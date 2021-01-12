@@ -115,7 +115,7 @@ class Rectangle:
                 rows = 0
                 while rows < self.width:
 
-                    rect_string += '#'
+                    rect_string += str(self.print_symbol)
                     rows += 1
 
                 rect_string += '\n'
