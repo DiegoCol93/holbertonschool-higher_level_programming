@@ -102,6 +102,7 @@ class Rectangle:
         """ Printing method via __str__. """
 
         rect_string = ''
+
         if self.height > 0 and self.width > 0:
 
             colums = 0

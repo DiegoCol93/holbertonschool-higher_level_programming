@@ -102,19 +102,24 @@ class Rectangle:
         """ Printing method via __str__. """
 
         rect_string = ''
-        colums = 0
-        while colums < self.height:
 
-            rows = 0
-            while rows < self.width:
+        if self.height > 0 and self.width > 0:
 
-                rect_string += '#'
-                rows += 1
+            colums = 0
+            while colums < self.height:
 
-            rect_string += '\n'
-            colums += 1
+                rows = 0
+                while rows < self.width:
 
-        return(rect_string[0: -1])
+                    rect_string += '#'
+                    rows += 1
+
+                rect_string += '\n'
+                colums += 1
+
+            return(rect_string[0: -1])
+        else:
+            return(rect_string)
 
     # __repr__ method. # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def __repr__(self):
