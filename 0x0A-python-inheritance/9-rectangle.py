@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
 """
 |     Module: For storing the Rectangle Class.      |
 |     ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨      |
@@ -16,6 +15,7 @@ BaseGeometry = __import__('7-base_geometry').BaseGeometry
 |                                                   |
 |                  | Jan-19-2021 |                  |
 """
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
 # | Rectangle | Sub-Class |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
