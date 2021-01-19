@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-# BaseGeometry = __import__('7-base_geometry').BaseGeometry
-Rectangle = __import__('9-rectangle').Rectangle
 """
 |     Module: For storing the Rectangle Class.      |
 |     ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨      |
@@ -17,6 +15,7 @@ Rectangle = __import__('9-rectangle').Rectangle
 |                                                   |
 |                  | Jan-19-2021 |                  |
 """
+Rectangle = __import__('9-rectangle').Rectangle
 
 
 # | Square | Sub-Class  |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
@@ -37,4 +36,3 @@ class Square(Rectangle):
     # | area | public | method | override | # # # # # # # # # # # # # # # # # #
     def area(self):
         return super().area()
-
