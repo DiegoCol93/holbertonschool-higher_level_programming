@@ -17,7 +17,7 @@
 """
 
 
-# | Basegeometry | Super-Class |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+# | Basegeometry | SuperClass |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 class BaseGeometry():
     """ BaseGeometry Parent Object Class """
 
