@@ -3,13 +3,7 @@
 
 
 def add_attribute(object, name, value):
-    """Method that add a new attribute to the object.
-    Args:
-       name: A new attribute.
-       value: Value to assign to the attribute.
-    Return:
-       Always nothing
-    """
+    """Method that add a new attribute to the object. """
     if hasattr(object, "__dict__") is not True:
             raise TypeError("can't add new attribute")
     else:
