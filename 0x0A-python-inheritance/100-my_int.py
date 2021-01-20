@@ -6,9 +6,9 @@ class MyInt(int):
     """ My integer inherits from integer """
 
     def __eq__(self, other):
-        """ equal to """
-        return False if (int(self) is other) else True
+        """ not equal to """
+        return int(self) != other
 
     def __ne__(self, other):
-        """ different than """
-        return True if (int(self) is other) else False
+        """ equal to """
+        return int(self) == other
