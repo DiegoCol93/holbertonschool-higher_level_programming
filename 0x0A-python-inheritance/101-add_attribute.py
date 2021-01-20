@@ -13,4 +13,4 @@ def add_attribute(object, name, value):
     if hasattr(object, "__dict__") is not True:
             raise TypeError("can't add new attribute")
     else:
-        object.__setattr__(name, value)"'")
+        object.__setattr__(name, value)
