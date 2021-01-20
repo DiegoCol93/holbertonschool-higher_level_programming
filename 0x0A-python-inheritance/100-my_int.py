@@ -10,5 +10,5 @@ class MyInt(int):
         return False if (int(self) is other) else True
 
     def __ne__(self, other):
-        """  """
+        """ different than """
         return True if (int(self) is other) else False
