@@ -1,1 +1,115 @@
-test
+The ``7-base_geometry`` module
+============================
+
+     ####################################################################
+     # 									#
+     #  Import os for testing contents of the file e.g.,		#
+     #                                                                  #
+     #  >>>os.popen('cat -e 7-base_geometry.py | tail -1').read()[-1]	#
+     #  '\n'								#
+     # 									#
+     ####################################################################
+    >>> import os
+
+    ### Import BaseGeometry.print_sorted from 7-base_geometry module.
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+
+    #--------------------------- Requirement tests ---------------------------#
+
+    ### Module documentation.
+    >>> len('7-base_geometry'.__doc__) > 10
+    True
+
+    ### Function documentation.
+    >>> len(BaseGeometry.__doc__) > 10
+    True
+
+    ### New line at the end of the file.
+    >>> os.popen('cat -e 7-base_geometry.py | tail -1').read()[-1]
+    '\n'
+
+    ### File contains the proper shebang.
+    >>> os.popen('cat 7-base_geometry.py | head -1').read()
+    '#!/usr/bin/python3\n'
+
+    ### No error from pep8
+    >>> os.popen("pep8 7-base_geometry.py").read()
+    ''
+
+    ### Executable file permissions.
+    >>> import os
+    >>> os.access('7-base_geometry.py', os.X_OK)
+    True
+
+    ### README exists on current directory.
+    >>> cwd = os.getcwd()
+    >>> path = cwd + '/README.md'
+    >>> os.path.exists(path)
+    True
+
+
+    #------------------------------- Main Cases -------------------------------#
+
+    >>> bg = BaseGeometry()
+    >>> bg.integer_validator("my_int", 12)
+
+    >>> bg.integer_validator("width", 89)
+
+    >>> bg.integer_validator("name", "John")
+    Traceback (most recent call last):
+    ...
+    TypeError: name must be an integer
+
+    >>> BaseG = __import__("7-base_geometry").BaseGeometry
+
+    >>> a = BaseG()
+    >>> ivalid = a.integer_validator
+
+    >>> ivalid("my_int", 12)
+
+    >>> ivalid("width", 89)
+
+    >>> ivalid("", 12)
+
+    >>> a.area()
+    Traceback (most recent call last):
+    Exception: area() is not implemented
+
+    >>> ivalid()
+    Traceback (most recent call last):
+    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+    >>> ivalid(50)
+    Traceback (most recent call last):
+    TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+    >>> ivalid("", 12)
+
+    >>> ivalid("name", "string")
+    Traceback (most recent call last):
+    TypeError: name must be an integer
+    >>> ivalid("name", None)
+    Traceback (most recent call last):
+    TypeError: name must be an integer
+    >>> ivalid("name", {3, 1})
+    Traceback (most recent call last):
+    TypeError: name must be an integer
+    >>> ivalid("name", ())
+    Traceback (most recent call last):
+    TypeError: name must be an integer
+    >>> ivalid("name", [])
+    Traceback (most recent call last):
+    TypeError: name must be an integer
+    >>> ivalid("name", True)
+    Traceback (most recent call last):
+    TypeError: name must be an integer
+    >>> ivalid("name", 3.5)
+    Traceback (most recent call last):
+    TypeError: name must be an integer
+    >>> ivalid("x", 0)
+    Traceback (most recent call last):
+    ValueError: x must be greater than 0
+    >>> ivalid("x", -4)
+    Traceback (most recent call last):
+    ValueError: x must be greater than 0
