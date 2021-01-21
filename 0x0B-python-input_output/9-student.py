@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""  """
+""" Module for storing Student class. """
 
 
 class Student():
-    """  """
-    first_name = ''
-    last_name = ''
-    age = ''
+    """ Studen class, with age, first and last name. """
+    first_name = ""
+    last_name = ""
+    age = ""
 
     def __init__(self, first_name, last_name, age):
         """ __init__ :
