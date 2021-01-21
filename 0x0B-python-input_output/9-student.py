@@ -4,6 +4,10 @@
 
 class Student():
     """  """
+    first_name = ''
+    last_name = ''
+    age = ''
+
     def __init__(self, first_name, last_name, age):
         """ __init__ :
 
@@ -18,5 +22,9 @@ class Student():
         self.age = age
 
     def to_json(self):
-        """ Returns the dictionary representation of a Student instance """
+        """ Returns the dictionary representation of a Student instance 
+
+            Returns:
+                dictionary representation of the Student
+        """
         return self.__dict__
