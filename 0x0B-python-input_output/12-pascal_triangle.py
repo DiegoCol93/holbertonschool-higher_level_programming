@@ -3,10 +3,13 @@
 
 
 def pascal_triangle(n):
-    """ Funton to calculate and create the list.
+    """ Function to calculate and create the list.
+
+        Args:
+            n Number for pascal's triangle.
 
         Returns:
-            the_list, created according to the input number n.
+            the_list(list), created according to the input number n.
     """
     the_list = []
 
@@ -26,4 +29,4 @@ def pascal_triangle(n):
 
             the_list.append(the_inner_list)
 
-    return(the_list)
+    return(the_list)                    )
