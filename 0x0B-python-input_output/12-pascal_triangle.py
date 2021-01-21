@@ -1,15 +1,14 @@
-#!/usr/bin/python
-""" Module for printing the pascal value up to 5. """
+#!/usr/bin/python3
+"""Module pascal's triangle"""
 
 
 def pascal_triangle(n):
-    """ Function to calculate and create the list.
-
-        Args:
-            n Number for pascal's triangle.
-
-        Returns:
-            the_list(list), created according to the input number n.
+    """ Function that returns a list of list of pascal triangle.
+    Args:
+        n: Pascal number.
+    Return:
+        list of lists of integers representing the
+        Pascals triangle of n.
     """
     p_list = []
     if n <= 0:
