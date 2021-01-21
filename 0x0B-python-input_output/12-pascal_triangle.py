@@ -29,4 +29,4 @@ def pascal_triangle(n):
 
             the_list.append(the_inner_list)
 
-    return(the_list)                    )
+    return(the_list)
