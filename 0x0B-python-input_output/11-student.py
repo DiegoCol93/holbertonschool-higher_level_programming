@@ -45,5 +45,5 @@ class Student():
                 json(file): JSON format text file.
         """
         for key in json.keys():
-            if self.__dict__[key]:
-                self.__dict__[key] = key
+
+            self.__dict__[key] = json[key]
