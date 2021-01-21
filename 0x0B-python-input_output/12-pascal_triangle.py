@@ -11,22 +11,16 @@ def pascal_triangle(n):
         Returns:
             the_list(list), created according to the input number n.
     """
-    the_list = []
-
-    if n > 0:
-
-        for row in range(n):
-
-            the_inner_list = []
-            for column in range(row + 1):
-
-                if column == 0 or column == row:
-                    the_inner_list.append(1)
-
-                else:
-                    the_inner_list.append(the_list[row - 1][column - 1] +
-                                          the_list[row - 1][column])
-
-            the_list.append(the_inner_list)
-
-    return(the_list)
+    p_list = []
+    if n <= 0:
+        return p_list
+    if n == 1:
+        return [[1]]
+    p_list = [[1]]
+    for i in range(1, n):
+        row = [1]
+        for j in range(1, i):
+            row.append(p_list[i - 1][j - 1] + p_list[i - 1][j])
+        row.append(1)
+        p_list.append(row)
+    return p_list
