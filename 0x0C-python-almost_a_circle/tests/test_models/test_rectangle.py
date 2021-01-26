@@ -24,8 +24,8 @@ class TestRectangle(unittest.TestCase):
         if print_on == 1:
             green = "\033[92m"
             reset = "\033[0m"
-            print(green + "~" * 19 + " Testing cases from 1-main.py " + "~" * 19 +
-                  reset)
+            print(green + "~" * 19 + " Testing cases from 1-main.py " +
+                  "~" * 19 + reset)
 
         r1 = Rectangle(10, 2)
         self.assertEqual(r1.id, 1)
@@ -111,17 +111,25 @@ class TestRectangle(unittest.TestCase):
 
         # Test display Rectangle(4, 6, 2, 1, 12)
         case_string = "[Rectangle] (12) 2/1 - 4/6\n"
-        r = Rectangle(4, 6, 2, 1, 12)
+        r1 = Rectangle(4, 6, 2, 1, 12)
         with patch('sys.stdout', new = StringIO()) as fake_out:
-            print(r)
+            print(r1)
             self.assertEqual(fake_out.getvalue(), case_string)
 
         # Test print Rectangle(5, 5, 1)
         case_string = "[Rectangle] (1) 1/0 - 5/5\n"
-        r = Rectangle(5, 5, 1)
+        r2 = Rectangle(5, 5, 1)
         with patch('sys.stdout', new = StringIO()) as fake_out:
-            print(r)
+            print(r2)
             self.assertEqual(fake_out.getvalue(), case_string)
+
+        # Test, str()
+        a = str(r1)
+        self.assertEqual(a, "[Rectangle] (12) 2/1 - 4/6")
+
+        # Test, str()
+        a = str(r2)
+        self.assertEqual(a, "[Rectangle] (1) 1/0 - 5/5")
 
     # Test from 6-main.py ----------------------------------------------------|
     def test_6_Rectangles(self):
@@ -129,8 +137,8 @@ class TestRectangle(unittest.TestCase):
         if print_on == 1:
             green = "\033[92m"
             reset = "\033[0m"
-            print(green + "~" * 20 + " Testing cases from 6-main.py " + "~" * 19 +
-                  reset)
+            print(green + "~" * 20 + " Testing cases from 6-main.py " +
+                  "~" * 19 + reset)
 
         # Test display Rectangle(2, 3, 2, 2)
         case_string = "\n\n" + "  ##\n" * 3
@@ -342,7 +350,8 @@ class TestRectangle(unittest.TestCase):
         if print_on == 1:
             green = "\033[92m"
             reset = "\033[0m"
-            print(green + "~" * 15 + " Testing Rectangle class instance cases. " +
+            print(green + "~" * 15 +
+                  " Testing Rectangle class instance cases. " +
                   "~" * 13 + reset)
 
         r = Rectangle(1, 1)
@@ -354,8 +363,8 @@ class TestRectangle(unittest.TestCase):
         if print_on == 1:
             green = "\033[92m"
             reset = "\033[0m"
-            print(green + "~" * 19 + " Testing Rectangle raise cases. " + "~" * 18 +
-                  reset)
+            print(green + "~" * 19 + " Testing Rectangle raise cases. "
+                  + "~" * 18 + reset)
 
         # More arguments than needed.
         with self.assertRaises(TypeError):
@@ -364,6 +373,16 @@ class TestRectangle(unittest.TestCase):
         # Less arguments than needed.
         with self.assertRaises(TypeError):
             r = Rectangle(1)
+
+        # Test for .update()
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, 1)
+            r.update(1, -1, -1)
+
+        # Tests .to_dictionary
+        with self.assertRaises(AttributeError):
+            r = None
+            r.to_dictionary()
 
     def tearDown(self):
         """ Resets the Base class counter after each test unit. """
