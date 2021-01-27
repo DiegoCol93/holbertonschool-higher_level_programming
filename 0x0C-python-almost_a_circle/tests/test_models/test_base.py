@@ -7,6 +7,7 @@ from models.square import Square
 from unittest.mock import patch
 from io import StringIO
 from time import sleep
+import os
 print_on = 0  # <-- Set to 1 to activate printing of the tests.
 
 
@@ -151,6 +152,9 @@ class TestBase(unittest.TestCase):
             print(green + '.' + "~" * 20 + " Testing cases from 18-main.py " +
                   "~" * 19 + reset)
 
+        list_rectangles_output = Rectangle.load_from_file()
+        self.assertEqual(list_rectangles_output, [])
+
         r1 = Rectangle(10, 7, 2, 8)
         r2 = Rectangle(2, 4)
         list_rectangles_input = [r1, r2]
@@ -171,6 +175,9 @@ class TestBase(unittest.TestCase):
             self.assertEqual(fake_out.getvalue(), case_string_2)
 
         self.assertFalse(r1 == list_rectangles_output[0])
+
+        list_squares_output = Square.load_from_file()
+        self.assertEqual(list_squares_output, [])
 
         s1 = Square(5)
         s2 = Square(7, 9, 1)
@@ -202,6 +209,9 @@ class TestBase(unittest.TestCase):
             print(green + '.' + "~" * 20 + " Testing cases from 100-main.py " +
                   "~" * 19 + reset)
 
+        list_rectangles_output = Rectangle.load_from_file_csv()
+        self.assertEqual(list_rectangles_output, [])
+
         r1 = Rectangle(10, 7, 2, 8)
         r2 = Rectangle(2, 4)
         list_rectangles_input = [r1, r2]
@@ -224,6 +234,9 @@ class TestBase(unittest.TestCase):
             self.assertEqual(fake_out.getvalue(), case_string_2)
 
         self.assertFalse(r1 == list_rectangles_output[0])
+
+        list_squares_output = Square.load_from_file()
+        self.assertEqual(list_squares_output, [])
 
         s1 = Square(5)
         s2 = Square(7, 9, 1)
@@ -255,10 +268,68 @@ class TestBase(unittest.TestCase):
         self.assertIsInstance(b1, Base)
         self.assertTrue(type(b1) == Base)
 
+    # Tests requirements.
+    def test_requirements(self):
+        """ Test for the requirements of the project."""
+
+        # Tests if README exists on current path.
+        current_path = os.getcwd()
+        concat = current_path + '/README.md'
+        self.assertTrue(os.path.exists(concat))
+
+        case = '\n'
+        # Test pep8
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            with os.popen("pep8 models/base.py") as cmd:
+                print(cmd.read())
+            self.assertEqual(fake_out.getvalue(), case)
+
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            with os.popen("pep8 models/rectangle.py") as cmd:
+                print(cmd.read())
+            self.assertEqual(fake_out.getvalue(), case)
+
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            with os.popen("pep8 models/square.py") as cmd:
+                print(cmd.read())
+            self.assertEqual(fake_out.getvalue(), case)
+
+        # Test newline at the end of the file.
+
+        # with os.popen('cat -e 0-add_integer.py | tail -1') as cmd:
+        #     new_line = cmd.read()[-1]
+        #     self.assertEqual(new_line, '\n')
+
+
+    # Test documentation.
+    def test_Wis(self):
+        """ Checks Contents """
+        name = "Rectangle.csv"
+        Rectangle.save_to_file_csv([])
+        with open(name, "r") as myfile:
+            r = myfile.read()
+            self.assertEqual(r, '[]')
+
     # Teardown method for resetting the count of instances in Base class.-----|
     def tearDown(self):
         """ Resets the Base class counter after each test unit. """
         Base._Base__nb_objects = 0
+        try:
+            os.remove("Rectangle.json")
+        except Exception as e:
+            pass
+        try:
+            os.remove("Square.json")
+        except Exception as e:
+            pass
+        try:
+            os.remove("Rectangle.csv")
+        except Exception as e:
+            pass
+        try:
+            os.remove("Square.csv")
+        except Exception as e:
+            pass
 
 if __name__ == '__main__':
     unittest.main()
