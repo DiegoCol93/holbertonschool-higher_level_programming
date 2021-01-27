@@ -111,19 +111,40 @@ class Base():
     # save_to_file_csv | Public | Class-method |-----------------------------||
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        filename = "{}.csv".format(cls.__name__)
-        list_of_dictionaries = list(map(cls.to_dictionary, list_objs))
-        for dictionary in list_of_dictionaries:
-            list_of_headers = list(dictionary.keys())
+        """
+        Saves the given list of object written as a csv file.
 
+        Args:
+            list_objs(list): List of objects of type Base class.
+        """
+        # Set the filname as the name of the class object.
+        filename = "{}.csv".format(cls.__name__)
+        if list_objs:
+            # Creates a list of dictionaries from the list of objects.
+            list_of_dictionaries = list(map(cls.to_dictionary, list_objs))
+            # Creates a list of headers for the file.
+            list_of_headers = list(list_of_dictionaries[0].keys())
+        # Open file and write file.
         with open(filename, 'w', newline='') as scv_file:
-            writer = csv.DictWriter(scv_file, list_of_headers)
-            writer.writeheader()
-            writer.writerows(list_of_dictionaries)
+            if list_objs is None:
+                scv_file.write("[]")
+            else:
+                # Set csv type "pointer".
+                writer = csv.DictWriter(scv_file, list_of_headers)
+                # Write object headers.
+                writer.writeheader()
+                # Write row of attributes.
+                writer.writerows(list_of_dictionaries)
 
     # load_from_file_csv | Public | Class-method |---------------------------||
     @classmethod
     def load_from_file_csv(cls):
+        """
+        Reads from a .csv file and returns a list of objects type Base class
+
+        Returns:
+            List of Rectangle or Square objects.
+        """
         filename = "{}.csv".format(cls.__name__)
         list_of_dictionaries = []
         tmp_dictionary = {}
@@ -196,6 +217,8 @@ class Base():
             Returns:
                 the JSON format string of the object.
         """
+        if list_dictionaries is None or bool(list_dictionaries) is False:
+            return "[]"
         return json.dumps(list_dictionaries)
 
     # from_json_string | Public | Static-method |-----------------------------|
