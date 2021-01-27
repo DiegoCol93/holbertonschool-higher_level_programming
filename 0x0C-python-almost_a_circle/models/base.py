@@ -125,12 +125,12 @@ class Base():
             # Creates a list of headers for the file.
             list_of_headers = list(list_of_dictionaries[0].keys())
         # Open file and write file.
-        with open(filename, 'w', newline='') as scv_file:
+        with open(filename, 'w', newline='') as csv_file:
             if list_objs is None or bool(list_objs) is False:
-                scv_file.write("[]")
+                csv_file.write("[]")
             else:
                 # Set csv type "pointer".
-                writer = csv.DictWriter(scv_file, list_of_headers)
+                writer = csv.DictWriter(csv_file, list_of_headers)
                 # Write object headers.
                 writer.writeheader()
                 # Write row of attributes.
