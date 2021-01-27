@@ -6,9 +6,9 @@ from models.rectangle import Rectangle
 from unittest.mock import patch
 from io import StringIO
 from time import sleep
+print_on = 0  # <-- Set to 1 to activate printing of the tests.
 
 
-print_on = 0
 class TestRectangle(unittest.TestCase):
     """ TestRectangle class for storing the unittest methods and cases. """
     if print_on == 1:
@@ -42,8 +42,8 @@ class TestRectangle(unittest.TestCase):
         if print_on == 1:
             green = "\033[92m"
             reset = "\033[0m"
-            print(green + "~" * 20 + " Testing cases from 2-main.py " + "~" * 19 +
-                  reset)
+            print(green + "~" * 20 + " Testing cases from 2-main.py " +
+                  "~" * 19 + reset)
 
         with self.assertRaises(TypeError):
             r = Rectangle(10, "2")
@@ -65,8 +65,8 @@ class TestRectangle(unittest.TestCase):
         if print_on == 1:
             green = "\033[92m"
             reset = "\033[0m"
-            print(green + "~" * 20 + " Testing cases from 3-main.py " + "~" * 19 +
-                  reset)
+            print(green + "~" * 20 + " Testing cases from 3-main.py " +
+                  "~" * 19 + reset)
 
         r1 = Rectangle(3, 2)
         self.assertEqual(r1.area(), 6)
@@ -83,20 +83,20 @@ class TestRectangle(unittest.TestCase):
         if print_on == 1:
             green = "\033[92m"
             reset = "\033[0m"
-            print(green + "~" * 20 + " Testing cases from 4-main.py " + "~" * 19 +
-                  reset)
+            print(green + "~" * 20 + " Testing cases from 4-main.py " +
+                  "~" * 19 + reset)
 
         # Test display Rectangle(4, 6)
         case_string = ("####\n" * 6)
         r = Rectangle(4, 6)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             r.display()
             self.assertEqual(fake_out.getvalue(), case_string)
 
         # Test display Rectangle(2, 2)
         case_string = ("##\n" * 2)
         r = Rectangle(2, 2)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             r.display()
             self.assertEqual(fake_out.getvalue(), case_string)
 
@@ -106,20 +106,20 @@ class TestRectangle(unittest.TestCase):
         if print_on == 1:
             green = "\033[92m"
             reset = "\033[0m"
-            print(green + "~" * 20 + " Testing cases from 5-main.py " + "~" * 19 +
-                  reset)
+            print(green + "~" * 20 + " Testing cases from 5-main.py " +
+                  "~" * 19 + reset)
 
         # Test display Rectangle(4, 6, 2, 1, 12)
         case_string = "[Rectangle] (12) 2/1 - 4/6\n"
         r1 = Rectangle(4, 6, 2, 1, 12)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r1)
             self.assertEqual(fake_out.getvalue(), case_string)
 
         # Test print Rectangle(5, 5, 1)
         case_string = "[Rectangle] (1) 1/0 - 5/5\n"
         r2 = Rectangle(5, 5, 1)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r2)
             self.assertEqual(fake_out.getvalue(), case_string)
 
@@ -143,14 +143,14 @@ class TestRectangle(unittest.TestCase):
         # Test display Rectangle(2, 3, 2, 2)
         case_string = "\n\n" + "  ##\n" * 3
         r = Rectangle(2, 3, 2, 2)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             r.display()
             self.assertEqual(fake_out.getvalue(), case_string)
 
         # Test display Rectangle(3, 2, 1, 0)
         case_string = " ###\n" * 2
         r = Rectangle(3, 2, 1, 0)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             r.display()
             self.assertEqual(fake_out.getvalue(), case_string)
 
@@ -160,48 +160,48 @@ class TestRectangle(unittest.TestCase):
         if print_on == 1:
             green = "\033[92m"
             reset = "\033[0m"
-            print(green + "~" * 20 + " Testing cases from 7-main.py " + "~" * 19 +
-                  reset)
+            print(green + "~" * 20 + " Testing cases from 7-main.py " +
+                  "~" * 19 + reset)
 
         # Test Rectangle(10, 10, 10, 10)
         case_string = "[Rectangle] (1) 10/10 - 10/10\n"
         r1 = Rectangle(10, 10, 10, 10)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r1)
             self.assertEqual(fake_out.getvalue(), case_string)
 
         # Test update(89)
         case_string = "[Rectangle] (89) 10/10 - 10/10\n"
         r1.update(89)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r1)
             self.assertEqual(fake_out.getvalue(), case_string)
 
         # Test update(89, 2)
         case_string = "[Rectangle] (89) 10/10 - 2/10\n"
         r1.update(89, 2)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r1)
             self.assertEqual(fake_out.getvalue(), case_string)
 
         # Test update(89, 2, 3)
         case_string = "[Rectangle] (89) 10/10 - 2/3\n"
         r1.update(89, 2, 3)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r1)
             self.assertEqual(fake_out.getvalue(), case_string)
 
         # Test update(89, 2, 3, 4)
         case_string = "[Rectangle] (89) 4/10 - 2/3\n"
         r1.update(89, 2, 3, 4)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r1)
             self.assertEqual(fake_out.getvalue(), case_string)
 
         # Test update(89, 2, 3, 4, 5)
         case_string = "[Rectangle] (89) 4/5 - 2/3\n"
         r1.update(89, 2, 3, 4, 5)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r1)
             self.assertEqual(fake_out.getvalue(), case_string)
 
@@ -211,41 +211,41 @@ class TestRectangle(unittest.TestCase):
         if print_on == 1:
             green = "\033[92m"
             reset = "\033[0m"
-            print(green + "~" * 20 + " Testing cases from 8-main.py " + "~" * 19 +
-                  reset)
+            print(green + "~" * 20 + " Testing cases from 8-main.py "
+                  + "~" * 19 + reset)
 
         # Test Rectangle(10, 10, 10, 10)
         case_string = "[Rectangle] (1) 10/10 - 10/10\n"
         r1 = Rectangle(10, 10, 10, 10)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r1)
             self.assertEqual(fake_out.getvalue(), case_string)
 
         case_string = "[Rectangle] (1) 10/10 - 10/1\n"
         r1.update(height=1)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r1)
             self.assertEqual(fake_out.getvalue(), case_string)
 
         case_string = "[Rectangle] (1) 2/10 - 1/1\n"
         r1.update(width=1, x=2)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r1)
             self.assertEqual(fake_out.getvalue(), case_string)
 
         case_string = "[Rectangle] (89) 3/1 - 2/1\n"
         r1.update(y=1, width=2, x=3, id=89)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r1)
             self.assertEqual(fake_out.getvalue(), case_string)
 
         case_string = "[Rectangle] (89) 1/3 - 4/2\n"
         r1.update(x=1, height=2, y=3, width=4)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r1)
             self.assertEqual(fake_out.getvalue(), case_string)
 
-    # Test from 12-main.py - update(**kwargs) ---------------------------------|
+    # Test from 12-main.py - update(**kwargs) --------------------------------|
     def test_12_Rectangles(self):
         """ Test cases for Rectangle class objects, from 12-main.py"""
         if print_on == 1:
@@ -256,7 +256,7 @@ class TestRectangle(unittest.TestCase):
 
         r1 = Rectangle(10, 2, 1, 9)
         case_string = "[Rectangle] (1) 1/9 - 10/2\n"
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r1)
             self.assertEqual(fake_out.getvalue(), case_string)
 
@@ -270,13 +270,13 @@ class TestRectangle(unittest.TestCase):
 
         r2 = Rectangle(1, 1)
         case_string = "[Rectangle] (2) 0/0 - 1/1\n"
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r2)
             self.assertEqual(fake_out.getvalue(), case_string)
 
         r2.update(**r1_dictionary)
         case_string = "[Rectangle] (1) 1/9 - 10/2\n"
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r2)
             self.assertEqual(fake_out.getvalue(), case_string)
 
@@ -295,35 +295,35 @@ class TestRectangle(unittest.TestCase):
         # Test Rectangle (1, 1)
         case_string = "#\n"
         r = Rectangle(1, 1)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             r.display()
             self.assertEqual(fake_out.getvalue(), case_string)
 
         # Test Rectangle (2, 3)
         case_string = "##\n" * 3
         r = Rectangle(2, 3)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             r.display()
             self.assertEqual(fake_out.getvalue(), case_string)
 
         # Test Rectangle (1, 1, 0, 1)
         case_string = "\n#\n"
         r = Rectangle(1, 1, 0, 1)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             r.display()
             self.assertEqual(fake_out.getvalue(), case_string)
 
         # Test Rectangle (1, 1, 1)
         case_string = " #\n"
         r = Rectangle(1, 1, 1)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             r.display()
             self.assertEqual(fake_out.getvalue(), case_string)
 
         # Test Rectangle (1, 1)
         case_string = "#\n"
         r = Rectangle(1, 1)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             r.display()
             self.assertEqual(fake_out.getvalue(), case_string)
 
@@ -337,10 +337,10 @@ class TestRectangle(unittest.TestCase):
                   "~" * 16 + reset)
 
         # Case when both *args and **kwargs are used.
-        r = Rectangle(1,1)
+        r = Rectangle(1, 1)
         r.update(2, id=100)
         case_string = "[Rectangle] (2) 0/0 - 1/1\n"
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r)
             self.assertEqual(fake_out.getvalue(), case_string)
 
@@ -384,6 +384,7 @@ class TestRectangle(unittest.TestCase):
             r = None
             r.to_dictionary()
 
+    # Resets the counter of objects, from the Base instance.
     def tearDown(self):
         """ Resets the Base class counter after each test unit. """
         Base._Base__nb_objects = 0
