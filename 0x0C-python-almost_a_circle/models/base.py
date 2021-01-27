@@ -126,7 +126,7 @@ class Base():
             list_of_headers = list(list_of_dictionaries[0].keys())
         # Open file and write file.
         with open(filename, 'w', newline='') as scv_file:
-            if list_objs is None:
+            if list_objs is None or bool(list_objs) is False:
                 scv_file.write("[]")
             else:
                 # Set csv type "pointer".
