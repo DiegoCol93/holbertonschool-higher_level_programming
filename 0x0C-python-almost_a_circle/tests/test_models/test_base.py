@@ -277,28 +277,44 @@ class TestBase(unittest.TestCase):
         concat = current_path + '/README.md'
         self.assertTrue(os.path.exists(concat))
 
-        case = '\n'
         # Test pep8
+        case = '\n'
         with patch('sys.stdout', new=StringIO()) as fake_out:
             with os.popen("pep8 models/base.py") as cmd:
                 print(cmd.read())
             self.assertEqual(fake_out.getvalue(), case)
-
         with patch('sys.stdout', new=StringIO()) as fake_out:
             with os.popen("pep8 models/rectangle.py") as cmd:
                 print(cmd.read())
             self.assertEqual(fake_out.getvalue(), case)
-
         with patch('sys.stdout', new=StringIO()) as fake_out:
             with os.popen("pep8 models/square.py") as cmd:
                 print(cmd.read())
             self.assertEqual(fake_out.getvalue(), case)
 
         # Test newline at the end of the file.
+        with os.popen('cat -e models/base.py | tail -1') as cmd:
+            new_line = cmd.read()
+            self.assertEqual(new_line[-1], '\n')
+        with os.popen('cat -e models/rectangle.py | tail -1') as cmd:
+            new_line = cmd.read()
+            self.assertEqual(new_line[-1], '\n')
+        with os.popen('cat -e models/square.py | tail -1') as cmd:
+            new_line = cmd.read()
+            self.assertEqual(new_line[-1], '\n')
 
-        # with os.popen('cat -e 0-add_integer.py | tail -1') as cmd:
-        #     new_line = cmd.read()[-1]
-        #     self.assertEqual(new_line, '\n')
+        cmd_s = 'cat -e tests/test_models/test_base.py | tail -1'
+        with os.popen(cmd_s) as cmd:
+            new_line = cmd.read()
+            self.assertEqual(new_line[-1], '\n')
+        cmd_s = 'cat -e tests/test_models/test_rectangle.py | tail -1'
+        with os.popen('cat -e models/square.py | tail -1') as cmd:
+            new_line = cmd.read()
+            self.assertEqual(new_line[-1], '\n')
+        cmd_s = 'cat -e tests/test_models/test_square.py | tail -1'
+        with os.popen('cat -e models/square.py | tail -1') as cmd:
+            new_line = cmd.read()
+            self.assertEqual(new_line[-1], '\n')
 
 
     # Test documentation.
