@@ -266,6 +266,134 @@ class TestSquare(unittest.TestCase):
         s3 = Square(8)
         self.assertEqual(s3.area(), 64)
 
+    # Copy for Square of Test from 4-main.py ---------------------------------|
+    def test_4_Squares(self):
+        """ Test cases for Square class objects, from 4-main.py"""
+        if print_on == 1:
+            green = "\033[92m"
+            reset = "\033[0m"
+            print(green + "~" * 20 + " Testing cases from 4-main.py " +
+                  "~" * 19 + reset)
+
+        # Test display Square(4)
+        case_string = ("####\n" * 4)
+        r = Square(4)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            r.display()
+            self.assertEqual(fake_out.getvalue(), case_string)
+
+        # Test display Square(2)
+        case_string = ("##\n" * 2)
+        r = Square(2)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            r.display()
+            self.assertEqual(fake_out.getvalue(), case_string)
+
+    # Copy for Square of Test from 5-main.py ---------------------------------|
+    def test_5_Squares(self):
+        """ Test cases for Square class objects, from 5-main.py"""
+        if print_on == 1:
+            green = "\033[92m"
+            reset = "\033[0m"
+            print(green + "~" * 20 + " Testing cases from 5-main.py " +
+                  "~" * 19 + reset)
+
+        # Test display Square(4, 2, 1, 12)
+        case_string = "[Square] (12) 2/1 - 4\n"
+        r1 = Square(4, 2, 1, 12)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(r1)
+            self.assertEqual(fake_out.getvalue(), case_string)
+
+        # Test print Square(5, 5, 1)
+        case_string = "[Square] (1) 5/1 - 5\n"
+        r2 = Square(5, 5, 1)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(r2)
+            self.assertEqual(fake_out.getvalue(), case_string)
+
+        # Test, str()
+        a = str(r1)
+        self.assertEqual(a, "[Square] (12) 2/1 - 4")
+
+        # Test, str()
+        a = str(r2)
+        self.assertEqual(a, "[Square] (1) 5/1 - 5")
+
+    # Copy for Square of Test from 6-main.py ---------------------------------|
+    def test_6_Squares(self):
+        """ Test cases for Square class objects, from 6-main.py"""
+        if print_on == 1:
+            green = "\033[92m"
+            reset = "\033[0m"
+            print(green + "~" * 20 + " Testing cases from 6-main.py " +
+                  "~" * 19 + reset)
+
+        # Test display Square(2, 3, 2, 2)
+        case_string = "\n\n" + "   ##\n" * 2
+        r = Square(2, 3, 2)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            r.display()
+            self.assertEqual(fake_out.getvalue(), case_string)
+
+        # Test display Square(3)
+        case_string = '\n' + "  ###\n" * 3
+        r = Square(3, 2, 1)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            r.display()
+            self.assertEqual(fake_out.getvalue(), case_string)
+
+    # Copy for Square of Test from 7-main.py - update(*args) -----------------|
+    def test_7_Squares(self):
+        """ Test cases for Square class objects, from 7-main.py"""
+        if print_on == 1:
+            green = "\033[92m"
+            reset = "\033[0m"
+            print(green + "~" * 20 + " Testing cases from 7-main.py " +
+                  "~" * 19 + reset)
+
+        # Test Square(10, 10, 10, 10)
+        case_string = "[Square] (10) 10/10 - 10\n"
+        r1 = Square(10, 10, 10, 10)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(r1)
+            self.assertEqual(fake_out.getvalue(), case_string)
+
+        # Test update(89)
+        case_string = "[Square] (89) 10/10 - 10\n"
+        r1.update(89)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(r1)
+            self.assertEqual(fake_out.getvalue(), case_string)
+
+        # Test update(89, 2)
+        case_string = "[Square] (89) 10/10 - 2\n"
+        r1.update(89, 2)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(r1)
+            self.assertEqual(fake_out.getvalue(), case_string)
+
+        # Test update(89, 2, 3)
+        case_string = "[Square] (89) 3/10 - 2\n"
+        r1.update(89, 2, 3)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(r1)
+            self.assertEqual(fake_out.getvalue(), case_string)
+
+        # Test update(89, 2, 3, 4)
+        case_string = "[Square] (89) 3/4 - 2\n"
+        r1.update(89, 2, 3, 4)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(r1)
+            self.assertEqual(fake_out.getvalue(), case_string)
+
+        # Test update(89, 2, 3, 4, 5)
+        case_string = "[Square] (89) 3/4 - 2\n"
+        r1.update(89, 2, 3, 4)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(r1)
+            self.assertEqual(fake_out.getvalue(), case_string)
+
     # Test for update() method.
     def test_Square_update(self):
         """ Test cases for the .display() """
