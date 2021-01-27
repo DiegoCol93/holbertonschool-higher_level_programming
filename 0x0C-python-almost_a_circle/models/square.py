@@ -5,6 +5,7 @@ from collections import OrderedDict
 
 
 class Square(Rectangle):
+    """ Por Esta no poner esta documentacion me cague el cuadrado :C """
     # __init__ | Private | method |-------------------------------------------|
     def __init__(self, size, x=0, y=0, id=None):
         """ __init__:
