@@ -6,6 +6,7 @@ from models.square import Square
 from unittest.mock import patch
 from io import StringIO
 from time import sleep
+import os
 print_on = 0  # <-- Set to 1 to activate printing of the tests.
 
 
@@ -411,9 +412,26 @@ class TestSquare(unittest.TestCase):
             print(s)
             self.assertEqual(fake_out.getvalue(), case_string)
 
+    # Teardown method for resetting the count of instances in Base class.-----|
     def tearDown(self):
         """ Resets the Base class counter after each test unit. """
         Base._Base__nb_objects = 0
+        try:
+            os.remove("Rectangle.json")
+        except Exception as e:
+            pass
+        try:
+            os.remove("Square.json")
+        except Exception as e:
+            pass
+        try:
+            os.remove("Rectangle.csv")
+        except Exception as e:
+            pass
+        try:
+            os.remove("Square.csv")
+        except Exception as e:
+            pass
 
 if __name__ == '__main__':
     unittest.main()
