@@ -329,6 +329,31 @@ class TestBase(unittest.TestCase):
             new_line = cmd.read()
             self.assertEqual(new_line[-1], '\n')
 
+        # Test shebang at the start of the file.
+        shebang = '#!/usr/bin/python3\n'
+        with os.popen('cat models/base.py | head -1') as cmd:
+            line_1 = cmd.read()
+            self.assertEqual(line_1, shebang)
+        with os.popen('cat models/rectangle.py | head -1') as cmd:
+            line_1 = cmd.read()
+            self.assertEqual(line_1, shebang)
+        with os.popen('cat models/square.py | head -1') as cmd:
+            line_1 = cmd.read()
+            self.assertEqual(line_1, shebang)
+
+        cmd_s = 'cat tests/test_models/test_base.py | head -1'
+        with os.popen(cmd_s) as cmd:
+            line_1 = cmd.read()
+            self.assertEqual(line_1, shebang)
+        cmd_s = 'cat tests/test_models/test_rectangle.py | head -1'
+        with os.popen('cat  models/square.py | head -1') as cmd:
+            line_1 = cmd.read()
+            self.assertEqual(line_1, shebang)
+        cmd_s = 'cat tests/test_models/test_square.py | head -1'
+        with os.popen('cat models/square.py | head -1') as cmd:
+            line_1 = cmd.read()
+            self.assertEqual(line_1, shebang)
+
     # Test from Wiston.
     def test_Wis(self):
         """ Checks Contents """
