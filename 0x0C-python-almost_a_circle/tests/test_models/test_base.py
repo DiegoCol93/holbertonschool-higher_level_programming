@@ -292,6 +292,19 @@ class TestBase(unittest.TestCase):
                 print(cmd.read())
             self.assertEqual(fake_out.getvalue(), case)
 
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            with os.popen("pep8 tests/test_models/test_base.py") as cmd:
+                print(cmd.read())
+            self.assertEqual(fake_out.getvalue(), case)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            with os.popen("pep8 tests/test_models/test_rectangle.py") as cmd:
+                print(cmd.read())
+            self.assertEqual(fake_out.getvalue(), case)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            with os.popen("pep8 tests/test_models/test_square.py") as cmd:
+                print(cmd.read())
+            self.assertEqual(fake_out.getvalue(), case)
+
         # Test newline at the end of the file.
         with os.popen('cat -e models/base.py | tail -1') as cmd:
             new_line = cmd.read()
@@ -316,8 +329,7 @@ class TestBase(unittest.TestCase):
             new_line = cmd.read()
             self.assertEqual(new_line[-1], '\n')
 
-
-    # Test documentation.
+    # Test from Wiston.
     def test_Wis(self):
         """ Checks Contents """
         name = "Rectangle.csv"
