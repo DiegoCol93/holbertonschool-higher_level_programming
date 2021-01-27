@@ -266,8 +266,6 @@ class TestSquare(unittest.TestCase):
         s3 = Square(8)
         self.assertEqual(s3.area(), 64)
 
-
-
     # Test for update() method.
     def test_Square_update(self):
         """ Test cases for the .display() """
