@@ -54,6 +54,7 @@ class Rectangle(Base):
     # update | Public | method |----------------------------------------------|
     def update(self, *args, **kwargs):
         """ Updates all attributes of the Rectangle object. """
+
         if bool(args) is True and args is not None:
             try:
                 self.id = args[0]
@@ -61,7 +62,7 @@ class Rectangle(Base):
                 self.height = args[2]
                 self.x = args[3]
                 self.y = args[4]
-            except Exception as e:
+            except IndexError:
                 pass
         else:
             for i in kwargs.keys():
@@ -77,7 +78,7 @@ class Rectangle(Base):
         ret_dict["height"] = self.height
         ret_dict["x"] = self.x
         ret_dict["y"] = self.y
-        return ret_dict
+        return dict(ret_dict)
 
     # Set & Get __width | Public | method |------------------------------------
     @property
