@@ -3,12 +3,13 @@
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
+from models.square import Square
 from unittest.mock import patch
 from io import StringIO
 from time import sleep
+print_on = 0  # <-- Set to 1 to activate printing of the tests.
 
 
-print_on = 0 # <-- Set to 1 to activate printing of the tests.
 class TestBase(unittest.TestCase):
     """ TestBase class for storing the unittest methods and cases. """
     if print_on == 1:
@@ -37,7 +38,7 @@ class TestBase(unittest.TestCase):
         b5 = Base()
         self.assertEqual(b5.id, 4)
 
-    # Tests from 14-main.py----------------------------------------------------|
+    # Tests from 14-main.py---------------------------------------------------|
     def test_14_Base(self):
         """ Tests the cases for the Base class from 14-main.py """
         if print_on == 1:
@@ -62,7 +63,7 @@ class TestBase(unittest.TestCase):
         empty = Base.to_json_string([])
         self.assertEqual(empty, "[]")
 
-
+    # Tests from 15-main.py---------------------------------------------------|
     def test_15_Base(self):
         """ Tests the cases for the Base class from 15-main.py """
         if print_on == 1:
@@ -80,7 +81,7 @@ class TestBase(unittest.TestCase):
         sum_expected = sum(list(map(lambda letter: ord(letter), case)))
 
         with open("Rectangle.json", "r") as file:
-            with patch('sys.stdout', new = StringIO()) as fake_out:
+            with patch('sys.stdout', new=StringIO()) as fake_out:
                 sum_save = sum(list(map(lambda letter: ord(letter),
                                         file.read())))
             self.assertEqual(sum_save, sum_expected)
@@ -89,16 +90,163 @@ class TestBase(unittest.TestCase):
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), "[]")
 
-    def test_15_Base(self):
-        """ Tests the cases for the Base class from 15-main.py """
+    # Tests from 16-main.py---------------------------------------------------|
+    def test_16_Base(self):
+        """ Tests the cases for the Base class from 16-main.py """
         if print_on == 1:
             green = "\033[92m"
             reset = "\033[0m"
-            print(green + '.' + "~" * 20 + " Testing cases from 15-main.py " +
+            print(green + '.' + "~" * 20 + " Testing cases from 16-main.py " +
+                  "~" * 19 + reset)
+        # Main case.
+        list_input = [{'id': 89, 'width': 10, 'height': 4},
+                      {'id': 7, 'width': 1, 'height': 7}]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(list_output, list_input)
+
+        # If json_string None
+        list_input = None
+        json_string = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_string)
+        self.assertEqual(list_output, [])
+
+        # If json_string empty
+        list_input = []
+        json_string = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_string)
+        self.assertEqual(list_output, [])
+
+    # Tests from 17-main.py---------------------------------------------------|
+    def test_17_Base(self):
+        """ Tests the cases for the Base class from 17-main.py """
+        if print_on == 1:
+            green = "\033[92m"
+            reset = "\033[0m"
+            print(green + '.' + "~" * 20 + " Testing cases from 17-main.py " +
                   "~" * 19 + reset)
 
+        r1 = Rectangle(3, 5, 1)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
 
+        case_string = '[Rectangle] (1) 1/0 - 3/5\n'
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(r1)
+        self.assertEqual(fake_out.getvalue(), case_string)
 
+        case_string = '[Rectangle] (1) 1/0 - 3/5\n'
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(r2)
+        self.assertEqual(fake_out.getvalue(), case_string)
+        self.assertFalse(r1 is r2)
+        self.assertFalse(r1 == r2)
+
+    # Tests from 18-main.py---------------------------------------------------|
+    def test_18_Base(self):
+        """ Tests the cases for the Base class from 18-main.py """
+        if print_on == 1:
+            green = "\033[92m"
+            reset = "\033[0m"
+            print(green + '.' + "~" * 20 + " Testing cases from 18-main.py " +
+                  "~" * 19 + reset)
+
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_rectangles_input = [r1, r2]
+        Rectangle.save_to_file(list_rectangles_input)
+        list_rectangles_output = Rectangle.load_from_file()
+
+        case_string_1 = '[Rectangle] (1) 2/8 - 10/7\n'
+        case_string_2 = '[Rectangle] (2) 0/0 - 2/4\n'
+
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(list_rectangles_output[0])
+            self.assertEqual(fake_out.getvalue(), case_string_1)
+
+        self.assertFalse(r1 == list_rectangles_output[0])
+
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(list_rectangles_output[1])
+            self.assertEqual(fake_out.getvalue(), case_string_2)
+
+        self.assertFalse(r1 == list_rectangles_output[0])
+
+        s1 = Square(5)
+        s2 = Square(7, 9, 1)
+        list_squares_input = [s1, s2]
+        Square.save_to_file(list_squares_input)
+        list_squares_output = Square.load_from_file()
+
+        case_string_1 = '[Square] (5) 0/0 - 5\n'
+        case_string_2 = '[Square] (6) 9/1 - 7\n'
+
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(list_squares_output[0])
+            self.assertEqual(fake_out.getvalue(), case_string_1)
+
+        self.assertFalse(s1 == list_squares_output[0])
+
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(list_squares_output[1])
+            self.assertEqual(fake_out.getvalue(), case_string_2)
+
+        self.assertFalse(s2 == list_squares_output[1])
+
+    # Tests from 100-main.py--------------------------------------------------|
+    def test_100_Base(self):
+        """ Tests the cases for the Base class from 100-main.py """
+        if print_on == 1:
+            green = "\033[92m"
+            reset = "\033[0m"
+            print(green + '.' + "~" * 20 + " Testing cases from 100-main.py " +
+                  "~" * 19 + reset)
+
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_rectangles_input = [r1, r2]
+
+        Rectangle.save_to_file_csv(list_rectangles_input)
+
+        list_rectangles_output = Rectangle.load_from_file_csv()
+
+        case_string_1 = '[Rectangle] (1) 2/8 - 10/7\n'
+        case_string_2 = '[Rectangle] (2) 0/0 - 2/4\n'
+
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(list_rectangles_output[0])
+            self.assertEqual(fake_out.getvalue(), case_string_1)
+
+        self.assertFalse(r1 == list_rectangles_output[0])
+
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(list_rectangles_output[1])
+            self.assertEqual(fake_out.getvalue(), case_string_2)
+
+        self.assertFalse(r1 == list_rectangles_output[0])
+
+        s1 = Square(5)
+        s2 = Square(7, 9, 1)
+        list_squares_input = [s1, s2]
+
+        Square.save_to_file_csv(list_squares_input)
+
+        list_squares_output = Square.load_from_file_csv()
+
+        case_string_1 = '[Square] (5) 0/0 - 5\n'
+        case_string_2 = '[Square] (6) 9/1 - 7\n'
+
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(list_squares_output[0])
+            self.assertEqual(fake_out.getvalue(), case_string_1)
+
+        self.assertFalse(s1 == list_squares_output[0])
+
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            print(list_squares_output[1])
+            self.assertEqual(fake_out.getvalue(), case_string_2)
+
+        self.assertFalse(s2 == list_squares_output[1])
 
     # Tests for the Base class instance. -------------------------------------|
     def test_instance(self):
