@@ -46,7 +46,7 @@ class Square(Rectangle):
         ret_dict["size"] = self.width
         ret_dict["x"] = self.x
         ret_dict["y"] = self.y
-        return ret_dict
+        return dict(ret_dict)
 
     # Set & Get __width | Public | method |------------------------------------
     @property
