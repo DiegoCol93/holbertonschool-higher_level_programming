@@ -1,0 +1,1 @@
+Basics in MySQL databases and management.
