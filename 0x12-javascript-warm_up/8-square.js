@@ -9,6 +9,6 @@ if (isNaN(parseInt(process.argv[2]))) {
 } else {
   // For i = given number and greater than 0.
   for (let i = parseInt(process.argv[2]); i > 0; i--) {
-    console.log('x'.repeat(parseInt(process.argv[2])));
+    console.log('X'.repeat(parseInt(process.argv[2])));
   }
 }
