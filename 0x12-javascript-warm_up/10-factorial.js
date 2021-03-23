@@ -5,9 +5,6 @@
 if (isNaN(parseInt(process.argv[2]))) {
   console.log(1);
 } else {
-  // Parse integer value.
-  const n = parseInt(process.argv[2]);
-
   // Define recursive factorial function.
   function factorial (n) {
     let result = 1;
@@ -20,5 +17,5 @@ if (isNaN(parseInt(process.argv[2]))) {
     return result;
   }
   // Call factorial function.
-  console.log(factorial(n));
+  console.log(factorial(parseInt(process.argv[2])));
 }
