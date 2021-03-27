@@ -2,7 +2,7 @@
 ''' Module for storing Base sub-class object definitions. '''
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from relationship_state import Base, State
+from relationship_state import Base
 from sqlalchemy.orm import relationship
 
 
