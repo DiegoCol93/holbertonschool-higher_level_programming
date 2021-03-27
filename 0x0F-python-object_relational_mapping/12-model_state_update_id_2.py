@@ -6,6 +6,7 @@ if __name__ == "__main__":
     from sys import argv as av
     from sqlalchemy import (create_engine)
     from sqlalchemy.orm import Session
+    from sqlalchemy import update
 
     # Create engine connection. av[1]=Username av[2]=Password av[3]=DBName.
     engine = create_engine('mysql+mysqldb://' + '{}'.format(av[1]) +
@@ -23,6 +24,9 @@ if __name__ == "__main__":
 
     # Get the State of id 2.
     st = session.query(State).get(2).update(args)
+
+    # Adde changes to current session.
+    session.add(st)
 
     # Commit the change.
     session.commit()
