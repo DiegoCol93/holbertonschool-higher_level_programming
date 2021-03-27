@@ -19,9 +19,11 @@ if __name__ == "__main__":
     with MySQLdb.connect(**args) as cursor:
 
         # SELECT * WHERE name matches the given argument.
-        cursor.execute("SELECT * FROM states WHERE name=\'{}\'".format(av[4]))
+        cursor.execute("SELECT * FROM states WHERE name='{}'".format(av[4]))
 
         # Fetch all content and return it as tuple object.
         rows = cursor.fetchall()
         for row in rows:
             print(row)
+        if bool(rows) is False:
+            print()
