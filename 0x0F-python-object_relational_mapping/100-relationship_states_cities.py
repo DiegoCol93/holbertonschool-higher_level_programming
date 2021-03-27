@@ -2,11 +2,11 @@
 ''' Start link class to table in database '''
 
 if __name__ == "__main__":
-    from sqlalchemy.orm import Session
     from relationship_state import Base, State
     from relationship_city import City
     from sys import argv as av
     from sqlalchemy import (create_engine)
+    from sqlalchemy.orm import Session
 
     # Create engine connection. av[1]=Username av[2]=Password av[3]=DBName.
     engine = create_engine('mysql+mysqldb://' + '{}'.format(av[1]) +
@@ -16,10 +16,18 @@ if __name__ == "__main__":
     # Creates all classes currently active.
     Base.metadata.create_all(engine)
 
-    # Create session's cursor.
-    session = Session(engine)
+    Session = sessionmaker(bind=engine)
 
-    newState = State(name='California', cities=[City(name='San Francisco')])
+    # Create session's cursor.
+    session = Session()
+
+    # Create a new City.
+    cName = "San Francisco"
+    newCity = City(name=cName)
+
+    # Create new state.
+    sName = "California"
+    newState = State(name=sName, cities=[newCity])
 
     # Add the new state.
     session.add(newState)
