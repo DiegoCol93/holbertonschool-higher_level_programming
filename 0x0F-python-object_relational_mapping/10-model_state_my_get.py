@@ -18,9 +18,13 @@ if __name__ == "__main__":
     # Create session cursor.
     session = Session(engine)
 
-    st = session.query(State).order_by(State.id).filter(State.name == av[4])
-    for state in st:
-        print(state.id)
+    st = session.query(State).filter(State.name == av[4]).all()
+
+    for row in st:
+        print(row.id)
+
+    if bool(st) is False:
+        print("Not found")
 
     # Close session cursor.
     session.close()
