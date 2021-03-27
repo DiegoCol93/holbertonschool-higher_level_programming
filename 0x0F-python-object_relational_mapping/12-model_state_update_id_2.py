@@ -19,14 +19,12 @@ if __name__ == "__main__":
     # Create session's cursor.
     session = Session(engine)
 
-    # Dictionary to pass into update().
-    args = {State.name: "New Mexico"}
-
     # Get the State of id 2.
-    st = session.query(State).get(2).update(args)
+    state = session.query(State).get(2)
+    state.name = 'New Mexico'
 
     # Adde changes to current session.
-    session.add(st)
+    session.add(state)
 
     # Commit the change.
     session.commit()
