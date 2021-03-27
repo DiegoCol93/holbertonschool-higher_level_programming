@@ -22,7 +22,7 @@ if __name__ == "__main__":
     args = {State.name: "New Mexico"}
 
     # Get the State of id 2.
-    st = session.query(State).get(2).update(args)
+    st = session.query(State)order_by(State.id).get(2).update(args)
 
     # Commit the change.
     session.commit()
