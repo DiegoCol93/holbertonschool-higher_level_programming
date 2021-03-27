@@ -24,4 +24,5 @@ if __name__ == "__main__":
         # Fetch all content and return it as tuple object.
         rows = cursor.fetchall()
         for row in rows:
-            print(row)
+            if (row[1]):
+                print(row)
