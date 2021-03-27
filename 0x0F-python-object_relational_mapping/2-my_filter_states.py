@@ -22,5 +22,6 @@ if __name__ == "__main__":
         cursor.execute("SELECT * FROM states WHERE name='{}'".format(av[4]))
 
         # Fetch all content and return it as tuple object.
-        rows = cursor.fetchone()
-        print(rows)
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)
