@@ -19,7 +19,10 @@ if __name__ == "__main__":
     with MySQLdb.connect(**args) as cursor:
 
         # SELECT * WHERE name starts by 'N' character.
-        cursor.execute("SELECT * FROM states WHERE name LIKE 'N%'")
+        cursor.execute("SELECT * "
+                       "FROM states "
+                       "WHERE name LIKE 'N%'"
+                       " ORDER BY states.id")
 
         # Fetch all content and return it as tuple object.
         rows = cursor.fetchall()
