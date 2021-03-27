@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
     # Create Query.
     args = [State.id, State.name, City.id, City.name]
-    queryTable = session.query(*args).join(City)
+    queryTable = session.query(*args).join(City).order_by(State.id)
 
     # Print on a specific format.
     state_num = 0
