@@ -13,6 +13,6 @@ class State(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(128), nullable=False)
 
-    __relKwargs = {"cascade":"all, delete", "backref": "state"}
+    __relKwargs = {"cascade": "all, delete-orphan", "backref": "state"}
 
     cities = relationship("City", **__relKwargs)
