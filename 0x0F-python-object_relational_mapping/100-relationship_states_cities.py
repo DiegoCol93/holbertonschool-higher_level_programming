@@ -21,13 +21,7 @@ if __name__ == "__main__":
     # Create session's cursor.
     session = Session()
 
-    # Create a new City.
-    cName = "San Francisco"
-    newCity = City(name=cName)
-
-    # Create new state.
-    sName = "California"
-    newState = State(name=sName, cities=[newCity])
+    newState = State(name='California', cities=[City(name='San Francisco')])
 
     # Add the new state.
     session.add(newState)
