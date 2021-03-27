@@ -20,17 +20,13 @@ if __name__ == "__main__":
     session = Session(engine)
 
     # Create Query.
-    args = [State.id, State.name, City.id, City.name]
-    queryTable = session.query(*args).join(City).order_by(State.id)
+    queryTable = session.query(State).order_by(State.id).all()
 
     # Print on a specific format.
-    state_num = 0
-    for row in queryTable:
-        if state_num == row[0]:
-            print("    {}: {}".format(row[2], row[3]))
-        else:
-            print("{}: {}\n    {}: {}".format(row[0], row[1], row[2], row[3]))
-            state_num = row[0]
+    for state in queryTable:
+        print("{}: {}".format(state.id, state.name))
+        for city in state.cities:
+            print("    {}: {}".format(city.id, city.name))
 
     # Close session cursor.
     session.close()
