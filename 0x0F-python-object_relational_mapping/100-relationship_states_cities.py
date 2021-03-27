@@ -2,11 +2,11 @@
 ''' Start link class to table in database '''
 
 if __name__ == "__main__":
+    from sqlalchemy.orm import sessionmaker
     from relationship_state import Base, State
     from relationship_city import City
     from sys import argv as av
     from sqlalchemy import (create_engine)
-    from sqlalchemy.orm import Session
 
     # Create engine connection. av[1]=Username av[2]=Password av[3]=DBName.
     engine = create_engine('mysql+mysqldb://' + '{}'.format(av[1]) +
