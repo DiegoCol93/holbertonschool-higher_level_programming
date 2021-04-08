@@ -1,3 +1,3 @@
 #!/bin/bash
 # GETS the content-lenght of the given IP.
-curl -sI "$1"| grep -i Content-Lenght | awk '{print $2}'
+curl -sI "$1"| grep Content-Length | awk '{print $2}'
