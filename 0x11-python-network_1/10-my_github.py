@@ -9,5 +9,5 @@ if __name__ == "__main__":
     try:
         info = r.json()
         print(info['id'])
-    except:
+    except ValueError:
         print('None')
