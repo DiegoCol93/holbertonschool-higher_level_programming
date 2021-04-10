@@ -6,4 +6,4 @@ from sys import argv as av
 if __name__ == "__main__":
     # av[1] = "URL", av[2] = "email"
     payload = { "email": av[2] }
-    print(post(av[1], data=payload))
+    print(post(av[1], data=payload).text)
