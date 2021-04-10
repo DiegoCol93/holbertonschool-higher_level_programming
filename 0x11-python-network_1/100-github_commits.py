@@ -2,7 +2,7 @@
 '''Prints the last 10 commits of a user's repository.
 
     usage:
-        ./100-github_commits.py <user name> <repo. name>
+        ./100-github_commits.py <repo. name> <user name>
 '''
 from sys import argv as av
 from requests import get
