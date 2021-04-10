@@ -2,7 +2,6 @@
 ''' Sends a POST to query the /search_user api. '''
 from sys import argv as av
 from requests import post
-from json import loads
 if __name__ == '__main__':
 
     if len(av) > 1 and bool(av[1]):
@@ -14,7 +13,7 @@ if __name__ == '__main__':
     response = post('http://0.0.0.0:5000/search_user', data=payload)
 
     try:
-        json = loads(response.text)
+        json = response.json
         if bool(json):
             print("[{}] {}".format(json["id"], json["name"]))
         else:
