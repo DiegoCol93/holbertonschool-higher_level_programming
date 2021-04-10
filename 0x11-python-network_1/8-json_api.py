@@ -13,9 +13,9 @@ if __name__ == '__main__':
     response = post('http://0.0.0.0:5000/search_user', data=payload)
 
     try:
-        json = response.json()
-        if bool(json):
-            print("[{}] {}".format(json["id"], json["name"]))
+        r_json = response.json()
+        if bool(r_json):
+            print("[{}] {}".format(r_json["id"], r_json["name"]))
         else:
             print("No result")
     except ValueError:
