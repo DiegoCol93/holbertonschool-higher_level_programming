@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Gets the response of a specific header https://intranet.hbtn.io/status. """
+""" Gets the response of a specific header at the given url. """
 from requests import get
 from sys import argv as av
 if __name__ == "__main__":
