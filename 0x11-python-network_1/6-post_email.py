@@ -3,6 +3,6 @@
 from requests import post
 from sys import argv as av
 
-# av[1] = "URL", av[2] = "email"
-
-print(post(av[1], data={'email': av[2]}).text)
+if __name__ == "__main__":
+    # av[1] = "URL", av[2] = "email"
+    print(post(av[1], data={'email': av[2]}).text)
