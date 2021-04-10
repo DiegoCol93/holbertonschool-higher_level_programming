@@ -13,6 +13,13 @@ if __name__ == "__main__":
 
     r = get(url)
     commits = r.json()
-    for commit in commits[0:10]:
-        print(commit.get("sha"), end=": ")
-        print(commit.get("author").get("login"))
+
+    i = 10
+    for commit in commits:
+        if i == 0:
+            break
+
+        print(commit['sha'], end=": ")
+        print(commit["author"]["login"])
+
+        i = i - 1
