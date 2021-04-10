@@ -10,9 +10,12 @@ if __name__ == "__main__":
 
     # Takes in "user name" as av[2] and "repository name" as av[1]
     url = "https://api.github.com/repos/{}/{}/commits".format(av[2], av[1])
-    REST_git_header = {"Accept": "application/vnd.github.v3+json"}
 
-    r = get(url)
+    # Header for specifing the REST API version to use with GitHub.
+    RESTv_header = {"headers": {"Accept": "application/vnd.github.v3+json"}}
+
+    r = get(url, **REST_git_header)
+
     commits = r.json()
 
     for commit in commits[:10]:
