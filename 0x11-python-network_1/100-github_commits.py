@@ -4,9 +4,8 @@
     usage:
         ./100-github_commits.py <user name> <repo. name>
 '''
-from requests import get
-from requests.auth import HTTPBasicAuth
 from sys import argv as av
+from requests import get
 if __name__ == "__main__":
 
     # Takes in "user name" as av[1] and "repository name" as av[2]
