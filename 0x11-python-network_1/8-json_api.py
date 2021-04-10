@@ -13,8 +13,7 @@ if __name__ == '__main__':
     response = post('http://0.0.0.0:5000/search_user', data=payload)
 
     try:
-        response.json
-        json = eval(response.text)
+        json = response.json()
         if bool(json):
             print("[{}] {}".format(json["id"], json["name"]))
         else:
