@@ -14,7 +14,7 @@ if __name__ == "__main__":
     # Header for specifing the REST API version to use with GitHub.
     RESTv_header = {"headers": {"Accept": "application/vnd.github.v3+json"}}
 
-    r = get(url, **REST_git_header)
+    r = get(url, **RESTv_header)
 
     commits = r.json()
 
